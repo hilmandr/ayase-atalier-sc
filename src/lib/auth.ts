@@ -1,29 +1,37 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, User } from "next-auth";
+import withAuth from "next-auth/middleware";
 import CredentialsProvider from "next-auth/providers/credentials";
-import axiosInstance from "./axios-instance";
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
+        username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         try {
-          const res = await axiosInstance.post("/auth/login/", {
-            email: credentials?.email,
-            password: credentials?.password,
-          });
+          if (
+            credentials?.username === process.env.USERNAME_LOGIN &&
+            credentials?.password === process.env.PASSWORD_LOGIN
+          ) {
+            const user: User = { id: "", name: "Ayase" };
+            return user;
+          }
 
-          return res.data.data;
+          return null;
         } catch (error) {
           throw new Error("something went wrong");
         }
       },
     }),
   ],
+  pages: {
+    signIn: "/login",
+    error: "/error",
+  },
+
   callbacks: {
     async jwt({ token, user }) {
       return { ...token, ...user };

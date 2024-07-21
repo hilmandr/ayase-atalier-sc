@@ -1,50 +1,79 @@
-import Container from "~/components/container";
-import Link from "next/link";
-import { Metadata } from "next";
-import { RxCaretRight } from "react-icons/rx";
-import { Project } from "~/server/db/schema";
+"use client";
+import Container from "~/components/common/container";
+import ProjectsItem from "~/components/main/projects";
+import { api } from "~/trpc/react";
+import { useState } from "react";
+import useDebounce from "~/hooks/use-debounce";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "~/components/ui/breadcrumb";
+import { Skeleton } from "~/components/ui/skeleton";
 
-export const metadata: Metadata = {
-  title: "Projects - Ayase Atalier",
-};
+export default function ProjectItemPage() {
+  // state
+  const [searchProject, setSearchProject] = useState("");
 
-export default async function ProjectItemPage() {
+  const debounceSearch = useDebounce(searchProject, 500);
+
+  // query
+  const { data: projects, isLoading } = api.project.getProjects.useQuery({
+    search: debounceSearch,
+  });
+
+  if (isLoading) {
+    return (
+      <>
+        <Container>
+          <div className="flex w-full items-center pt-32">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Projects</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+          <div className="grid grid-cols-1 gap-10 py-10 pt-5 md:grid-cols-2 lg:grid-cols-3">
+            {[...Array(3)].map((i) => (
+              <div className="group flex flex-col" key={i}>
+                <Skeleton className="relative flex aspect-video w-full" />
+                <div className="mt-2 flex w-full flex-col items-center justify-center gap-2">
+                  <Skeleton className="h-5 w-[300px]" />
+                  <Skeleton className="h-5 w-[150px]" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </>
+    );
+  }
   return (
     <>
       <Container>
         <div className="flex w-full items-center pt-32">
-          <Link href="/">
-            <p className="font-bold">Home </p>
-          </Link>
-          <RxCaretRight />
-          <p className="cursor-default">Projects</p>
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Projects</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
         </div>
-        <div className="grid grid-cols-1 gap-10 py-10 md:grid-cols-2 lg:grid-cols-3">
-          {[]?.map((project: Project, i) => (
-            <Link
-              href={`/projects/${project?.slug}`}
-              className="flex flex-col"
-              key={i}
-            >
-              <div className="group flex flex-col">
-                <div className="relative flex aspect-video w-full overflow-hidden">
-                  {/* <Image
-                  src={project.thumbnail as string}
-                  fill
-                  alt=""
-                  className="object-cover transform transition-all scale-110 group-hover:scale-100 duration-500 visible object-center"
-                ></Image> */}
-                </div>
-                <div className="flex flex-col p-3 text-center">
-                  <h3 className="font-bold">{project?.title}</h3>
-                  <h4 className="text-xs font-light tracking-widest">
-                    {project?.place}
-                  </h4>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ProjectsItem project={projects || []} />
       </Container>
     </>
   );

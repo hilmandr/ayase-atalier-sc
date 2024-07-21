@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import "~/styles/globals.css";
+import "./globals.css";
 import { mulish } from "~/lib/constant";
 import { TRPCReactProvider } from "~/trpc/react";
-import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Ayase Atalier",

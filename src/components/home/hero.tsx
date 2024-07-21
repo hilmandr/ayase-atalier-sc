@@ -14,13 +14,13 @@ export default function Hero() {
             <div className="grid grid-cols-5">
               <div className="col-span-3 grid">
                 <h1 className="text-4xl font-semibold md:text-4xl lg:text-6xl lg:leading-tight">
-                  abc
+                  We Help You To Bring Your Dream Building.
                 </h1>
                 <Link
                   href="/projects"
                   className="mt-4 w-48 rounded-full border border-white bg-transparent px-6 py-4 text-center transition-all duration-200 hover:bg-white hover:text-black"
                 >
-                  abc
+                  Discover Projects
                 </Link>
               </div>
             </div>

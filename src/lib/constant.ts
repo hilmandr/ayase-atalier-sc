@@ -1,6 +1,6 @@
-import { IMenu, IMenuDashboard } from "@/types";
 import { Mulish, Englebert } from "next/font/google";
 import { Building3, Messages1, NoteText, Category2 } from "iconsax-react";
+import { IMenu, IMenuDashboard } from "~/types";
 
 export const mulish = Mulish({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -41,11 +41,6 @@ export const MENU_DASHBOARD: IMenuDashboard[] = [
     label: "Projects",
     path: "/dashboard/projects",
     icon: Building3,
-  },
-  {
-    label: "Articles",
-    path: "/dashboard/articles",
-    icon: NoteText,
   },
   {
     label: "Messages",

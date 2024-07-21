@@ -1,4 +1,4 @@
-import EditProjectForm from "~/components/dashboard/edit-project";
+import EditProjectForm from "~/components/dashboard/projects/edit-project";
 import { Project } from "~/server/db/schema";
 import { api } from "~/trpc/server";
 

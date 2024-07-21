@@ -23,3 +23,13 @@ export type Project = InferSelectModel<typeof project>;
 export type NewProject = InferInsertModel<typeof project>;
 
 export type User = InferSelectModel<typeof user>;
+
+export const message = pgTable("message", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: varchar("name").notNull(),
+  email: varchar("email").notNull(),
+  message: varchar("message").notNull(),
+  time: timestamp("time").notNull(),
+});
+export type Message = InferSelectModel<typeof message>;
+export type NewMessage = InferInsertModel<typeof message>;

@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, ilike, or } from "drizzle-orm";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { project } from "~/server/db/schema";
 import { z } from "zod";
@@ -9,9 +9,18 @@ import {
 import { slugify } from "~/lib/utils";
 
 export const projectRouter = createTRPCRouter({
-  getProjects: publicProcedure.query(({ ctx }) => {
-    return ctx.db.query.project.findMany();
-  }),
+  getProjects: publicProcedure
+    .input(z.object({ search: z.string() }))
+    .query(({ input, ctx }) => {
+      return ctx.db.query.project.findMany({
+        where: input.search
+          ? or(
+              ilike(project.title, `%${input.search}%`),
+              ilike(project.place, `%${input.search}%`),
+            )
+          : undefined,
+      });
+    }),
 
   getProjectBySlug: publicProcedure
     .input(z.object({ slug: z.string() }))

@@ -1,9 +1,6 @@
 "use client";
-
-import LenisScroll from "~/components/lennis-scroll";
 import { usePathname } from "next/navigation";
-import HeaderDashboard from "~/components/dashboard/sidenav";
-import { NextUIProvider } from "@nextui-org/react";
+import SideNav from "~/components/dashboard/layout/sidenav";
 import { Toaster } from "~/components/ui/sonner";
 
 export default function MainLayout({
@@ -15,7 +12,7 @@ export default function MainLayout({
   return (
     <>
       <div className="flex h-screen min-h-screen w-full">
-        <HeaderDashboard />
+        <SideNav />
         <main className="flex w-full">{children}</main>
         {/* <Footer /> */}
       </div>

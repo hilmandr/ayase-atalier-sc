@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import Container from "~/components/container";
+import Container from "~/components/common/container";
 
 export default function About() {
   return (
     <>
       <Container>
-        <h5 className="pt-40 text-left text-xl">About Ayase Atalier</h5>
-        <div className="flex grid w-full grid-cols-1 justify-between gap-x-24 gap-y-6 pb-20 pt-5 lg:grid-cols-2">
+        <h5 className="pt-32 text-left text-xl">About Ayase Atalier</h5>
+        <div className="grid w-full grid-cols-1 justify-between gap-x-24 gap-y-6 pb-20 pt-5 lg:grid-cols-2">
           <div className="">
             <h1 className="text-5xl font-bold">Not what you think</h1>
           </div>
@@ -33,56 +33,54 @@ export default function About() {
           </div>
           <div className="flex w-full">
             <p className="text-justify text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+              Ayase Atelier is a distinguished architecture and interior design
+              firm renowned for its unwavering commitment to professionalism and
+              excellence. With a team of seasoned architects and gifted interior
+              designers, the firm excels in transforming clients visions into
+              breathtaking and practical realities. Every project undertaken by
+              Ayase Atelier is characterized by a blend of innovative thinking,
+              aesthetic sophistication, and meticulous attention to detail. The
+              firm&#39;s dedication to maintaining the highest standards of
+              quality ensures that each design not only meets but exceeds the
+              expectations of their discerning clientele.
             </p>
           </div>
           <div className="flex w-full lg:col-start-2">
             <p className="text-justify text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Client satisfaction is at the heart of Ayase Atelier&#39;s ethos,
+              with a tailored approach that honors the unique needs and
+              personalities of each client. The firm is also deeply committed to
+              sustainability, integrating eco-friendly practices and materials
+              into their projects to promote environmental responsibility. This
+              dual focus on individual client needs and broader ecological
+              impact makes Ayase Atelier a leader in the industry. Whether
+              crafting luxurious residential spaces or dynamic commercial
+              environments, Ayase Atelier stands out as the premier choice for
+              those seeking refined and sophisticated design solutions.
             </p>
           </div>
         </div>
       </Container>
-      <div className="bg-black text-white">
+      <div className="bg-black px-32 text-white">
         <Container>
           <div className="flex w-full items-center justify-center py-14">
             <h1 className="text-center text-5xl font-bold">Our Team</h1>
           </div>
-          <div className="flex grid w-full grid-cols-1 items-center justify-between gap-x-20 gap-y-10 lg:grid-cols-2">
-            <div>
+          <div className="flex w-full items-center justify-between gap-x-20 gap-y-10">
+            <div className="max-w-xl">
               <h1 className="text-base font-semibold">Btari Larasati Kirana</h1>
               <span className="align-top text-xs font-normal">Principal</span>
               <p className="text-justify text-base font-normal">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Leads her architecture and interior design firm with an
+                unwavering commitment to professionalism and excellence. Under
+                her visionary leadership, Ayase Atelier has become synonymous
+                with innovative and sophisticated design solutions. Btari&#39;s
+                keen eye for detail and her dedication to quality ensure that
+                every project not only meets but exceeds client expectations.
+                Her ability to harmoniously blend aesthetics with functionality,
+                while incorporating sustainable practices, has positioned Ayase
+                Atelier as a premier choice in the industry for those seeking
+                elegant and bespoke designs.
               </p>
             </div>
             <div className="relative flex w-full">

@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fr-box.fr-basic .fr-element.fr-view {
+  font-family: var(--font-mulish);
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.625;
+}
+
+/* .fr-box.fr-basic .fr-element.fr-view > p > img {
+  min-width: 100% !important;
+} */

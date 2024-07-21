@@ -1,14 +1,15 @@
+"use client";
 import Link from "next/link";
-import Header from "~/components/dashboard/header";
-import Container from "~/components/container";
-import ProjectsTableDb from "~/components/dashboard/project-table";
+import Header from "~/components/dashboard/layout/header";
+import Container from "~/components/common/container";
+
 import { Button } from "~/components/ui/button";
 import { IoIosAddCircle } from "react-icons/io";
 import { Input } from "~/components/ui/input";
-import { api } from "~/trpc/server";
+import { api } from "~/trpc/react";
+import ProjectsTable from "~/components/dashboard/projects/project-table";
 
-export default async function InputProjectPage() {
-  const projects = await api.project.getProjects();
+export default function InputProjectPage() {
   return (
     <>
       <div className="flex h-full w-full bg-white text-sm">
@@ -28,13 +29,9 @@ export default async function InputProjectPage() {
                   </Button>
                 </div>
               </div>
-              <div className="flex w-80">
-                <Input type="text" placeholder="Search" />
-              </div>
             </div>
             <div className="pt-4">
-              {/* <ProjectsTable /> */}
-              <ProjectsTableDb project={projects || []} />
+              <ProjectsTable />
             </div>
           </div>
         </Container>

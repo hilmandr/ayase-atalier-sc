@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ViewProject from "~/components/dashboard/view-project";
+import ViewProject from "~/components/dashboard/projects/view-project";
 import { Project } from "~/server/db/schema";
 import { api } from "~/trpc/server";
 
@@ -9,12 +9,12 @@ interface PageParams {
   };
 }
 export default async function View({ params }: PageParams) {
-  const project = await api.project.getProjectBySlug({ slug: params.slug });
+  const projects = await api.project.getProjectBySlug({ slug: params.slug });
 
   return (
     <>
       <div>
-        <ViewProject project={project || ({} as Project)} />
+        <ViewProject project={projects || ({} as Project)} />
       </div>
     </>
   );
