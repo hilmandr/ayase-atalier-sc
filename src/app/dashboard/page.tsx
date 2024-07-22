@@ -9,11 +9,7 @@ import { cn } from "~/lib/utils";
 import { Project } from "~/server/db/schema";
 import { api } from "~/trpc/react";
 
-interface ProjectItemProps {
-  project: Project[];
-}
-
-export default function Home({ project }: ProjectItemProps) {
+export default function Home() {
   return (
     <>
       <div className="flex h-full w-full bg-white text-sm">

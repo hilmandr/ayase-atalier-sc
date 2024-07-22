@@ -16,8 +16,8 @@ import {
 } from "~/components/ui/popover";
 import { cn } from "~/lib/utils";
 import {
-  CreateProjectRequest,
-  createProjectRequest,
+  UpdateProjectRequest,
+  updateProjectRequest,
 } from "~/lib/validations/project.validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CalendarIcon } from "@radix-ui/react-icons";
@@ -30,9 +30,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useDropzone } from "react-dropzone";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-
 import ContentEditor from "./froala-editor";
-
 import { Project } from "~/server/db/schema";
 import { api } from "~/trpc/react";
 import { Input } from "~/components/ui/input";
@@ -40,13 +38,23 @@ import { Button } from "~/components/ui/button";
 import { Calendar } from "~/components/ui/calendar";
 import { Textarea } from "~/components/ui/textarea";
 import { Label } from "~/components/ui/label";
+import { Loader2 } from "lucide-react";
+import { json } from "stream/consumers";
 
 interface PageParams {
   project: Project;
 }
 export default function EditProjectForm({ project }: PageParams) {
-  const form = useForm<CreateProjectRequest>({
-    resolver: zodResolver(createProjectRequest),
+  // hooks
+  const router = useRouter();
+
+  // state
+  const [isLoading, setIsLoading] = useState(false);
+  const [thumbnail, setThumbnail] = useState<File | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const form = useForm<UpdateProjectRequest>({
+    resolver: zodResolver(updateProjectRequest),
     defaultValues: {
       title: "",
       place: "",
@@ -57,38 +65,39 @@ export default function EditProjectForm({ project }: PageParams) {
     },
   });
 
-  const [thumbnail, setThumbnail] = useState<File | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const router = useRouter();
-
   const editProjectMutation = api.project.updateProject.useMutation({
-    onMutate: () => setIsLoading(true),
+    onMutate: () => setLoading(true),
     onSuccess: () => {
       form.reset();
-      toast.success("Add Project Success!");
+      toast.success("Project Has Been Updated!");
       router.push("/dashboard/projects");
     },
-    onSettled: () => setIsLoading(false),
+    onSettled: () => setLoading(false),
   });
 
-  const onSubmit: SubmitHandler<CreateProjectRequest> = useCallback(
+  const onSubmit: SubmitHandler<UpdateProjectRequest> = useCallback(
     async (data) => {
+      console.log(data);
+      const payload = {
+        ...data,
+        slug: project.slug,
+      };
       if (thumbnail) {
+        setLoading(true);
         const formData = new FormData();
         formData.append("file", thumbnail!);
         formData.append("upload_preset", "v7bn49sm");
+
         const res = await axios.post<{ secure_url: string }>(
           `https://api.cloudinary.com/v1_1/dbi3iqa9k/image/upload`,
           formData,
         );
         if (res.status === 200) {
-          editProjectMutation.mutate({
-            ...data,
-            slug: project.slug,
-            thumbnail: res.data.secure_url,
-          });
+          payload.thumbnail = res.data.secure_url;
+          setIsLoading(true);
         }
       }
+      editProjectMutation.mutate(payload);
     },
     [thumbnail, editProjectMutation, project],
   );
@@ -113,10 +122,14 @@ export default function EditProjectForm({ project }: PageParams) {
     form.setValue("content", project.content);
     form.setValue("date", project.date);
     form.setValue("summary", project.summary);
+    // form.setValue("slug", project.slug);
+    // form.setValue("thumbnail", project.thumbnail);
   }, [form, project]);
+
   return (
     <>
       <div className="w-full flex-1 pt-5">
+        {/* {JSON.stringify(form.formState.errors)} */}
         <div className="w-full flex-1 rounded-lg border border-slate-200 px-6 pb-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -286,7 +299,14 @@ export default function EditProjectForm({ project }: PageParams) {
                 )}
               />
 
-              <Button type="submit">Submit</Button>
+              {loading ? (
+                <Button disabled>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </Button>
+              ) : (
+                <Button type="submit">Submit</Button>
+              )}
             </form>
           </Form>
         </div>

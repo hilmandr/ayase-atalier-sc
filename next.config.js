@@ -12,6 +12,9 @@ const config = {
       { protocol: "http", hostname: "**" },
     ],
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 };
 
 export default config;

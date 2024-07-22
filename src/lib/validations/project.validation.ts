@@ -21,7 +21,7 @@ export const createProjectRequest = z.object({
 });
 
 export const updateProjectRequest = z.object({
-  slug: z.string(),
+  slug: z.string().optional(),
   title: z.string().min(1, {
     message: "Title must be filled.",
   }),

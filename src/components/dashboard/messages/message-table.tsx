@@ -41,7 +41,6 @@ export default function MessagesTable() {
 
   // pagination
   const searchParams = useSearchParams();
-  const search = searchParams.get("search") as string;
   const page = Number(searchParams.get("page")) || 1;
 
   return (
