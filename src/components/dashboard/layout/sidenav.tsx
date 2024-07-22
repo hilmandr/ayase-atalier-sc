@@ -9,7 +9,7 @@ export default function SideNav() {
   const pathname = usePathname();
   return (
     <>
-      <div className="z-20 flex min-h-screen w-[20%] flex-col overflow-hidden bg-slate-50">
+      <div className="fixed z-20 flex min-h-screen w-[286px] flex-col overflow-hidden bg-slate-50">
         <div className="flex h-24 w-full items-center justify-center">
           <LogoHitam />
         </div>

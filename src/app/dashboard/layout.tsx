@@ -13,7 +13,7 @@ export default function MainLayout({
     <>
       <div className="flex h-screen min-h-screen w-full">
         <SideNav />
-        <main className="flex w-full">{children}</main>
+        <main className="ml-[286px] flex w-[calc(100%-286px)]">{children}</main>
         {/* <Footer /> */}
       </div>
       <Toaster />

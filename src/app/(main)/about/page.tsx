@@ -61,13 +61,13 @@ export default function About() {
           </div>
         </div>
       </Container>
-      <div className="bg-black px-32 text-white">
+      <div className="bg-black px-10 text-white lg:px-32">
         <Container>
           <div className="flex w-full items-center justify-center py-14">
             <h1 className="text-center text-5xl font-bold">Our Team</h1>
           </div>
-          <div className="flex w-full items-center justify-between gap-x-20 gap-y-10">
-            <div className="max-w-xl">
+          <div className="grid w-full items-center justify-between gap-x-20 lg:grid-cols-2 lg:gap-y-10">
+            <div className="w-full lg:max-w-xl">
               <h1 className="text-base font-semibold">Btari Larasati Kirana</h1>
               <span className="align-top text-xs font-normal">Principal</span>
               <p className="text-justify text-base font-normal">
@@ -83,13 +83,13 @@ export default function About() {
                 elegant and bespoke designs.
               </p>
             </div>
-            <div className="relative flex w-full">
+            <div className="relative mt-10 flex aspect-[1/1] w-full lg:mt-0">
               <Image
                 src="/image/about/our-team-01.jpeg"
                 alt=""
                 width={300}
                 height={120}
-                className=""
+                className="h-full w-full object-cover object-center"
               ></Image>
             </div>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import { Eye } from "iconsax-react";
 import { Input } from "~/components/ui/input";
@@ -27,6 +27,9 @@ import { api } from "~/trpc/react";
 import useDebounce from "~/hooks/use-debounce";
 import { useSearchParams } from "next/navigation";
 import BasePagination from "~/components/common/base-pagination";
+import dynamic from "next/dynamic";
+
+// const tes = dynamic(() => import(""))
 
 export default function MessagesTable() {
   // state
