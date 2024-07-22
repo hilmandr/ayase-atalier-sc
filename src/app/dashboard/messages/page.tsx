@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import Container from "~/components/common/container";
 import Header from "~/components/dashboard/layout/header";
 import MessagesTable from "~/components/dashboard/messages/message-table";
@@ -11,7 +12,9 @@ export default function MessagesPage() {
           <Header />
           <div className="flex w-full flex-col pt-8">
             <h1 className="text-lg">Messages From Contact Page</h1>
-            <MessagesTable />
+            <Suspense>
+              <MessagesTable />
+            </Suspense>
           </div>
         </Container>
       </div>

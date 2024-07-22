@@ -8,6 +8,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { Input } from "~/components/ui/input";
 import { api } from "~/trpc/react";
 import ProjectsTable from "~/components/dashboard/projects/project-table";
+import { Suspense } from "react";
 
 export default function InputProjectPage() {
   return (
@@ -31,7 +32,9 @@ export default function InputProjectPage() {
               </div>
             </div>
             <div className="pt-4">
-              <ProjectsTable />
+              <Suspense>
+                <ProjectsTable />
+              </Suspense>
             </div>
           </div>
         </Container>

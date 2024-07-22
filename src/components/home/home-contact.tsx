@@ -62,10 +62,10 @@ export default function HomeContact() {
   return (
     <>
       <Element name="contact">
-        <h1 className="pt-24 text-center text-5xl font-normal" id="contact">
+        <h1 className="text-center text-5xl font-normal" id="contact">
           Let&#39;s get in touch
         </h1>
-        <div className="grid items-center justify-between gap-x-10 gap-y-20 px-0 sm:grid-cols-1 lg:grid-cols-2 lg:px-32 lg:py-10">
+        <div className="grid items-center justify-between gap-x-10 gap-y-20 px-0 py-5 sm:grid-cols-1 lg:grid-cols-2 lg:px-32 lg:py-10">
           <div className="relative hidden aspect-[7/10] max-w-xs md:block">
             <Image
               className=""
