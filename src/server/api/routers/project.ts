@@ -57,7 +57,7 @@ export const projectRouter = createTRPCRouter({
           thumbnail: input.thumbnail || "",
           slug,
         })
-        .where(eq(project.slug, input.slug))
+        .where(eq(project.slug, input.slug || ""))
         .returning();
     }),
 
