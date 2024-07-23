@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ayase Atalier",
     description: "Hi, i'm Btari Larasati Kirana. I'm a Architec.",
-    images: ["/image/banner-image.png"],
+    images: ["/image/banner-image.jpeg"],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/image/banner-image.png"],
+    images: ["/image/banner-image.jpeg"],
   },
 };
 
