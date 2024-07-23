@@ -5,19 +5,19 @@ import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
   title: "Ayase Atalier",
-  metadataBase: new URL("https://ayaseatalier.vercel.app/"),
+  metadataBase: new URL("https://ayaseatalier.vercel.app"),
   description: "Hi, i'm Btari Larasati Kirana. I'm an Architec.",
   icons: "/image/icon-white.png",
   creator: "Btari Larasati Kirana",
   publisher: "Btari Larasati Kirana",
   openGraph: {
     title: "Ayase Atalier",
-    description: "Hi, i'm Btari Larasati Kirana. I'm a Architec.",
-    images: ["/image/banner-image.jpeg"],
+    description: "Hi, i'm Btari Larasati Kirana. I'm an Architec.",
+    images: ["/image/image-banner.jpeg"],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/image/banner-image.jpeg"],
+    images: ["/image/image-banner.jpeg"],
   },
 };
 

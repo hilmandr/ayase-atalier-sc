@@ -16,6 +16,15 @@ export const generateMetadata = async ({
   return {
     title: post?.title + " - Ayaase Atalier",
     description: post?.summary,
+    openGraph: {
+      title: post?.title + " - Ayaase Atalier",
+      description: post?.summary,
+      images: ["/image/" + post?.thumbnail as string],
+    },
+     twitter: {
+      card: "summary_large_image",
+      images: ["/image/" + post?.thumbnail as string],
+    },
   };
 };
 
