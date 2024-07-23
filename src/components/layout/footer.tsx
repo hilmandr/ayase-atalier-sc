@@ -27,14 +27,14 @@ const Footer = () => {
               <h1 className="font-semibold tracking-widest">CONTACT</h1>
               <p className="font-light">+62 812 3456 7890</p>
               <p className="font-light">ayaseatalier@gmail.com</p>
-              <Link href="">
+              <Link target="_blank" href="https://www.instagram.com/ayaseatelier?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
                 <h1 className="font-semibold tracking-widest">INSTAGRAM</h1>
               </Link>
             </div>
           </div>
           <div className="flex w-full items-center justify-between pb-5">
             <p className="font-light">
-              Copyright &copy; ayaseatalier.com 2023.
+              Copyright &copy; ayaseatalier.com 2024.
             </p>
 
             <div className="">
