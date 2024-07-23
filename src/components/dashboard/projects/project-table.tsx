@@ -75,7 +75,7 @@ export default function ProjectsTable() {
       <div className="my-5 flex w-80">
         <Input
           type="text"
-          placeholder="Search Sender Name..."
+          placeholder="Search Project Title..."
           value={searchProject}
           onChange={(e) => setSearchProject(e.target.value)}
         />
@@ -121,7 +121,7 @@ export default function ProjectsTable() {
                     <TableCell>
                       <div className="flex">
                         <Button asChild className="h-8" variant="ghost">
-                          <Link href={`/dashboard/projects/${project.slug}`}>
+                          <Link href={`/projects/${project.slug}`} target="_blank">
                             <GrView size={16} />
                           </Link>
                         </Button>
