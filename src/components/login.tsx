@@ -4,12 +4,14 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { LoginValidation, login } from "~/lib/validations/login.validation";
+import { Loader2 } from "lucide-react";
+import { Eye, EyeSlash } from "iconsax-react";
 
 export default function Login() {
   const router = useRouter();
@@ -22,6 +24,7 @@ export default function Login() {
   });
   const onSubmit: SubmitHandler<LoginValidation> = useCallback(
     async (data) => {
+      setLoading(true);
       const res = await signIn("credentials", {
         username: data.username,
         password: data.password,
@@ -33,15 +36,19 @@ export default function Login() {
         toast.error("error");
       } else {
         router.push("/dashboard");
+         setLoading(true);
       }
     },
     [router],
   );
+    const [loading, setLoading] = useState<boolean>(false);
+    const [password, setPassword] = useState<boolean>(false);
+    const [visible, setVisible] = useState<boolean>(false);
 
   return (
     <>
-      <div className="grid w-full grid-cols-2">
-        <div className="flex w-full items-center justify-center">
+      <div className="grid w-full lg:grid-cols-2">
+        <div className="flex lg:pt-0 pt-64 w-full items-center justify-center">
           <div className="flex w-[45%] flex-col">
             <h1 className="text-3xl font-bold">Welcome Back</h1>
             <p className="text-sm">Please complete your details to login.</p>
@@ -71,24 +78,43 @@ export default function Login() {
                       <FormItem>
                         <FormLabel>Password</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Password"
-                            {...field}
-                            type="password"
-                          />
+                          <div className=" relative items-center justify-between">
+                              <Button type="button" variant="ghost" className=" absolute right-0" onClick={() => {
+                                setPassword((prev) => !prev)}}
+                                >
+                                  {password ? (<Eye size="16" color="#3a3a3a"/>) : (<EyeSlash size="16" color="#3a3a3a"/>)}
+                              </Button>
+                              <Input
+                              placeholder="Password"
+                              {...field}
+                              type={password?"text":"password"}
+                            />
+                          </div>
                         </FormControl>
                       </FormItem>
                     )}
                   />
                   <div className="flex">
-                    <Button className="w-full">Login</Button>
+                     {loading ? (
+                    <Button disabled className="h-14 w-36 rounded-full py-2">
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={() => onSubmit}
+                      type="submit"
+                      className="flex h-14 w-36 items-center justify-center rounded-full border bg-black py-2 text-white transition-all duration-150 hover:border-stone-800 hover:bg-white hover:text-black"
+                    >
+                      <p className="text-center">Login</p>
+                    </Button>
+                  )}
                   </div>
                 </form>
               </Form>
             </div>
           </div>
         </div>
-        <div className="flex w-full items-center justify-center">
+        <div className="lg:flex w-full items-center justify-center hidden">
           <div className="relative z-10 h-[100dvh] w-full bg-[url('/image/hero.jpg')] bg-cover bg-center"></div>
         </div>
       </div>
