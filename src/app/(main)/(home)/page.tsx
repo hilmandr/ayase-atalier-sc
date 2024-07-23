@@ -14,7 +14,7 @@ export default async function Home() {
             className="h-full w-full object-cover object-center"
           ></Image>
         </div>
-        <div className="max-w-lg text-black">
+        <div className="lg:max-w-lg text-black">
           <p className="text-justify">
             Combining innovation, aesthetics, and meticulous attention to
             detail, the firm ensures that every creation not only meets the

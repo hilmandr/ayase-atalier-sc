@@ -66,7 +66,7 @@ export default function HomeContact() {
           Let&#39;s get in touch
         </h1>
         <div className="grid items-center justify-between gap-x-10 gap-y-20 px-0 py-5 sm:grid-cols-1 lg:grid-cols-2 lg:px-32 lg:py-10">
-          <div className="relative hidden aspect-[7/10] max-w-xs md:block">
+          <div className="relative hidden lg:aspect-[7/10] max-w-xs md:block">
             <Image
               className=""
               src="/image/contact-image.jpg"
