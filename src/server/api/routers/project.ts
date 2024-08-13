@@ -7,6 +7,7 @@ import {
   updateProjectRequest,
 } from "~/lib/validations/project.validation";
 import { slugify } from "~/lib/utils";
+import { uuid } from "uuidv4";
 
 export const projectRouter = createTRPCRouter({
   getProjects: publicProcedure
@@ -41,6 +42,7 @@ export const projectRouter = createTRPCRouter({
           ...input,
           thumbnail: input.thumbnail || "",
           slug,
+          id: uuid()
         })
         .returning();
     }),

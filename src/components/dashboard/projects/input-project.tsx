@@ -98,7 +98,7 @@ export default forwardRef<Object, EditorProps>(
               ...data,
               thumbnail: res.data.secure_url,
             });
-            setIsLoading(true);
+            setLoading(true);
           }
         }
       },
@@ -275,7 +275,7 @@ export default forwardRef<Object, EditorProps>(
                           </p>
                         )}
                       </div>
-                    )}
+                    )} 
                   </div>
                 </div>
 

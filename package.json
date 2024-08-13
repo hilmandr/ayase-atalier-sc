@@ -60,6 +60,7 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^10.0.1",
+    "uuidv4": "^6.2.13",
     "yup": "^1.4.0",
     "zod": "^3.23.3"
   },

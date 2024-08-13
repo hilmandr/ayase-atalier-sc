@@ -2,7 +2,7 @@ import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { pgTable, timestamp, uuid, varchar, serial } from "drizzle-orm/pg-core";
 
 export const project = pgTable("project", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: varchar("id").primaryKey().notNull(),
   slug: varchar("slug").notNull(),
   title: varchar("title").notNull(),
   place: varchar("place").notNull(),
@@ -14,7 +14,7 @@ export const project = pgTable("project", {
 });
 
 export const user = pgTable("user", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: varchar("id").primaryKey(),
   username: varchar("username").notNull(),
   password: varchar("password").notNull(),
 });
@@ -25,7 +25,7 @@ export type NewProject = InferInsertModel<typeof project>;
 export type User = InferSelectModel<typeof user>;
 
 export const message = pgTable("message", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: varchar("id").primaryKey().notNull(),
   name: varchar("name").notNull(),
   email: varchar("email").notNull(),
   message: varchar("message").notNull(),
