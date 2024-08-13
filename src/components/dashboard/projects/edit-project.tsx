@@ -122,8 +122,6 @@ export default function EditProjectForm({ project }: PageParams) {
     form.setValue("content", project.content);
     form.setValue("date", project.date);
     form.setValue("summary", project.summary);
-    // form.setValue("slug", project.slug);
-    // form.setValue("thumbnail", project.thumbnail);
   }, [form, project]);
 
   return (

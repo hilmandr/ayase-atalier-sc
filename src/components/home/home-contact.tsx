@@ -23,6 +23,7 @@ import {
 import { Element } from "react-scroll";
 import { api } from "~/trpc/react";
 import { useRouter } from "next/navigation";
+import { uuid } from "uuidv4";
 
 export default function HomeContact() {
   const router = useRouter();
@@ -50,7 +51,7 @@ export default function HomeContact() {
       const res = await axios.post<{ message: string }>("/api/contact", data);
       console.log(res);
       if (res.status === 200) {
-        addMessageMutation.mutate({ ...data, message: data.message || "" });
+        addMessageMutation.mutate({ ...data, message: data.message || ""});
         setLoading(true);
         return res;
       }

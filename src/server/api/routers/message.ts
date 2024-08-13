@@ -3,6 +3,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import { message } from "~/server/db/schema";
 import { z } from "zod";
 import { createMessageRequest } from "~/lib/validations/contact.validation";
+import { uuid } from 'uuidv4';
 
 export const messageRouter = createTRPCRouter({
   getMessages: publicProcedure
@@ -31,7 +32,7 @@ export const messageRouter = createTRPCRouter({
     .mutation(({ input, ctx }) => {
       return ctx.db
         .insert(message)
-        .values({ ...input, time: new Date() || "" })
+        .values({ ...input, time: new Date() || "", id:uuid() })
         .returning();
     }),
 
